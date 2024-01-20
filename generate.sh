@@ -30,3 +30,5 @@ gen() {
 
   echo '' >> ${NAME}/Dockerfile
 }
+
+gen 22.04 22.04
