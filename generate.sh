@@ -26,7 +26,8 @@ gen() {
 
   echo '# Install Hugo' >> ${NAME}/Dockerfile
   echo 'RUN curl -L "https://github.com/gohugoio/hugo/releases/download/v0.121.2/hugo_extended_0.121.2_linux-64bit.deb" -o "hugo.deb"' >> ${NAME}/Dockerfile
-  echo 'RUN apt install ./hugo.deb && rm ./hugo.deb' >> ${NAME}/Dockerfile
+  echo 'RUN dpkg -i ./hugo.deb && rm ./hugo.deb' >> ${NAME}/Dockerfile
+  echo 'RUN hugo version' >> ${NAME}/Dockerfile
   echo '' >> ${NAME}/Dockerfile
 
   echo '' >> ${NAME}/Dockerfile
