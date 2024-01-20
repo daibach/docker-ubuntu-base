@@ -12,6 +12,6 @@ RUN unzip awscliv2.zip
 RUN ./aws/install
 
 # Install Hugo
-RUN wget -q -0 /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.121.2/hugo_extended_0.121.2_linux-amd64.deb && dpkg -i /tmp/hugo.deb && rm /tmp/hugo.deb
+RUN curl "https://github.com/gohugoio/hugo/releases/download/v0.121.2/hugo_extended_0.121.2_linux-amd64.deb" -o "hugo.deb" && dpkg -i hugo.deb && rm hugo.deb
 
 
