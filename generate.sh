@@ -10,7 +10,7 @@ gen() {
   echo '' >> ${NAME}/Dockerfile
 
   echo '# Install dependencies' >> ${NAME}/Dockerfile
-  echo 'RUN apt-get -qq update && apt-get -qq install -y --no-install-recommends git zlib1g-dev ca-certificates libpng-dev libzip-dev libicu-dev zip unzip default-mysql-client cron' >> ${NAME}/Dockerfile
+  echo 'RUN apt-get -qq update && apt-get -qq install -y --no-install-recommends git zlib1g-dev ca-certificates libpng-dev libzip-dev libicu-dev zip unzip default-mysql-client cron curl' >> ${NAME}/Dockerfile
 
   echo '' >> ${NAME}/Dockerfile
 

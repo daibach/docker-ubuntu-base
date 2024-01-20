@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 # Install dependencies
-RUN apt-get -qq update && apt-get -qq install -y --no-install-recommends git zlib1g-dev ca-certificates libpng-dev libzip-dev libicu-dev zip unzip default-mysql-client cron
+RUN apt-get -qq update && apt-get -qq install -y --no-install-recommends git zlib1g-dev ca-certificates libpng-dev libzip-dev libicu-dev zip unzip default-mysql-client cron curl
 
 # Set up cron
 RUN touch /var/log/cron.log
