@@ -12,8 +12,12 @@ RUN unzip awscliv2.zip
 RUN ./aws/install
 
 # Install Hugo
-RUN curl -L "https://github.com/gohugoio/hugo/releases/download/v0.121.2/hugo_extended_0.121.2_linux-64bit.deb" -o "hugo.deb"
-RUN dpkg -i ./hugo.deb && rm ./hugo.deb
-RUN hugo version
+RUN curl -L "https://github.com/gohugoio/hugo/releases/download/v0.121.2/hugo_extended_0.121.2_Linux-64bit.tar.gz" -o "hugo.tar.gz"
+ARG HUGO_VERSION='0.121.2'
+RUN curl -L "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz" -o "hugo.tar.gz" && \
+  tar xzf hugo.tar.gz && \
+  rm -r hugo.tar.gz && \
+  mv hugo /usr/bin && \
+  chmod 755 /usr/bin/hugo
 
 
