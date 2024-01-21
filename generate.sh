@@ -4,6 +4,7 @@ set -xe
 gen() {
   VERSION=$1
   NAME=$2
+  HUGO_VERSION=$3
 
   mkdir -p ${NAME}
   echo "FROM ubuntu:${VERSION}" > ${NAME}/Dockerfile
@@ -25,12 +26,16 @@ gen() {
   echo '' >> ${NAME}/Dockerfile
 
   echo '# Install Hugo' >> ${NAME}/Dockerfile
-  echo 'RUN curl -L "https://github.com/gohugoio/hugo/releases/download/v0.121.2/hugo_extended_0.121.2_linux-64bit.deb" -o "hugo.deb"' >> ${NAME}/Dockerfile
-  echo 'RUN dpkg -i ./hugo.deb && rm ./hugo.deb' >> ${NAME}/Dockerfile
-  echo 'RUN hugo version' >> ${NAME}/Dockerfile
+  echo 'RUN curl -L "https://github.com/gohugoio/hugo/releases/download/v0.121.2/hugo_extended_0.121.2_Linux-64bit.tar.gz" -o "hugo.tar.gz"' >> ${NAME}/Dockerfile
+  echo "ARG HUGO_VERSION='${HUGO_VERSION}'" >> ${NAME}/Dockerfile
+  echo 'RUN curl -L "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz" -o "hugo.tar.gz" && \' >> ${NAME}/Dockerfile
+  echo '  tar xzf hugo.tar.gz && \' >> ${NAME}/Dockerfile
+  echo '  rm -r hugo.tar.gz && \' >> ${NAME}/Dockerfile
+  echo '  mv hugo /usr/bin && \' >> ${NAME}/Dockerfile
+  echo '  chmod 755 /usr/bin/hugo' >> ${NAME}/Dockerfile
   echo '' >> ${NAME}/Dockerfile
 
   echo '' >> ${NAME}/Dockerfile
 }
 
-gen 22.04 22.04
+gen 22.04 22.04 0.121.2
