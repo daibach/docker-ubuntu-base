@@ -26,7 +26,6 @@ gen() {
   echo '' >> ${NAME}/Dockerfile
 
   echo '# Install Hugo' >> ${NAME}/Dockerfile
-  echo 'RUN curl -L "https://github.com/gohugoio/hugo/releases/download/v0.121.2/hugo_extended_0.121.2_Linux-64bit.tar.gz" -o "hugo.tar.gz"' >> ${NAME}/Dockerfile
   echo "ARG HUGO_VERSION='${HUGO_VERSION}'" >> ${NAME}/Dockerfile
   echo 'RUN curl -L "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz" -o "hugo.tar.gz" && \' >> ${NAME}/Dockerfile
   echo '  tar xzf hugo.tar.gz && \' >> ${NAME}/Dockerfile
@@ -39,4 +38,4 @@ gen() {
 }
 
 gen 22.04 22.04 0.121.2
-gen 23.10 23.10 0.121.2
+gen 24.04 24.04 0.137.1
